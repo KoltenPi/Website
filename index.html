@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flashing Website</title>
+  <style>
+    body {
+      background-color: black;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    .flashlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      animation: flashlight 0.1s infinite; /* Flashlight tempo */
+      z-index: 9999;
+    }
+
+    @keyframes flashlight {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .content {
+      position: fixed;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 50px;
+      text-align: center;
+      z-index: 1000;
+      animation: textAnimation 0.2s infinite; /* Text tempo */
+      color: white;
+    }
+
+    @keyframes textAnimation {
+      0% {
+        color: white;
+      }
+      50% {
+        color: red;
+      }
+      100% {
+        color: white;
+      }
+    }
+
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      animation: popupAnimation infinite;
+      z-index: 9999;
+    }
+
+    .popup.active {
+      display: block;
+    }
+
+    .popup-content {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 80px;
+      color: #00ff00; /* Bright green */
+      animation: popupTextAnimation 0.5s infinite;
+    }
+
+    @keyframes popupTextAnimation {
+      0% {
+        color: #00ff00; /* Bright green */
+      }
+      50% {
+        color: #0000ff; /* Bright blue */
+      }
+      100% {
+        color: #00ff00; /* Bright green */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="flashlight"></div>
+  <div class="content">
+    <h1>I WILL KILL YOU</h1>
+  </div>
+  <div class="popup">
+    <div class="popup-content">
+      <h1>ITS TOO LATE :D</h1>
+    </div>
+  </div>
+
+  <script>
+    function showPopup() {
+      var popup = document.querySelector(".popup");
+      popup.classList.add("active");
+
+      setTimeout(function() {
+        popup.classList.remove("active");
+      }, 1000); // Duration of the popup being displayed (0.5 seconds)
+
+      setTimeout(showPopup, 10000); // Show the popup every 10 seconds
+    }
+
+    setTimeout(showPopup, 5000); // Initial delay of 5 seconds
+  </script>
+</body>
+</html>
